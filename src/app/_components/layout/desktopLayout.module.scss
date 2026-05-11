@@ -1,0 +1,117 @@
+@use "../../../styles/color.scss" as *;
+
+.desktopLayout {
+    display: flex;
+    min-height: 100vh;
+    background-color: $secondary_1;
+}
+
+.sideBar {
+    width: 260px;
+    background: rgba($primary, 0.7);
+    border-right: 1px solid rgba($white, 0.5);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.logo {
+    padding: 1.5rem;
+
+    h2 {
+        margin: 0;
+        color: $white;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+}
+
+.nav {
+    flex: 1;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: rgba($white, 0.7);
+    transition: all 0.3s ease;
+    font-weight: 500;
+
+    &:hover {
+        background: rgba($white, 0.1);
+        color: $white;
+    }
+
+    &.active {
+        background: $white;
+        color: $primary;
+        box-shadow: 0 4px 12px rgba($black, 0.1);
+
+        .icon {
+            color: $primary;
+        }
+    }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.sidebarFooter {
+    padding: 2rem 1.5rem;
+    border-top: 1px solid rgba($white, 0.1);
+
+    :global(.ant-btn) {
+        width: 100%;
+        border-radius: 12px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+}
+
+.mainContent {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 72px;
+    background: rgba($primary, 0.7);
+    border-bottom: 1px solid rgba($black, 0.05);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    color: $white;
+}
+
+.headerTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $white;
+}
+
+.contentBody {
+    padding: 2.5rem;
+    flex: 1;
+}

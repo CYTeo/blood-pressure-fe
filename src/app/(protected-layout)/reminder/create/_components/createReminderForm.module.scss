@@ -1,0 +1,60 @@
+@use "../../../../../styles/color.scss" as *;
+
+.formCard {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.title {
+    margin-bottom: 8px !important;
+    color: $primary !important;
+}
+
+.fullWidthInput {
+    width: 100% !important;
+}
+
+.submitButtonItem {
+    margin-top: 32px;
+    margin-bottom: 0;
+}
+
+.submitButton {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.timeSelect {
+    width: 80px !important;
+    text-align: center;
+    
+    :global(.ant-select-selector) {
+        border-radius: 8px !important;
+        background-color: rgba(0, 0, 0, 0.02) !important;
+        border: 1px solid #d9d9d9 !important;
+        height: 48px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    :global(.ant-select-selection-item) {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        color: $primary !important;
+    }
+}
+
+.timeSeparator {
+    font-size: 24px;
+    color: #999;
+    padding: 0 4px;
+}

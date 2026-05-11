@@ -1,0 +1,40 @@
+// public/sw.js
+self.addEventListener("push", function (event) {
+  console.log("[Service Worker] Push Received.");
+
+  let data = {};
+  try {
+    data = event.data.json();
+  } catch (e) {
+    console.warn("[Service Worker] Push data is not JSON:", event.data.text());
+    data = { title: "New Reminder", body: event.data.text() };
+  }
+
+  console.log("[Service Worker] Push Data:", data);
+
+  const options = {
+    body: data.message || "You have a new reminder!",
+    icon: "/logo/icon-192.webp",
+    badge: "/logo/icon-192.webp",
+    data: { url: data.url || "/" },
+    tag: "reminder-notification",
+    renotify: true,
+  };
+
+  event.waitUntil(
+    self.registration
+      .showNotification(data.title || "Reminder", options)
+      .then(() =>
+        console.log("[Service Worker] Notification shown successfully"),
+      )
+      .catch((err) =>
+        console.error("[Service Worker] Notification error:", err),
+      ),
+  );
+});
+
+self.addEventListener("notificationclick", function (event) {
+  console.log("[Service Worker] Notification clicked.");
+  event.notification.close();
+  event.waitUntil(clients.openWindow(event.notification.data.url));
+});

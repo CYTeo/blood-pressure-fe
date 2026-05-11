@@ -1,0 +1,36 @@
+@use "../../../../styles/color.scss" as *;
+
+.registerCard {
+    background: rgba(255, 255, 255, 0.9); // Semi-transparent
+    backdrop-filter: blur(10px); // Glass effect
+    padding: 3rem 4rem; // Adjusted padding
+    border-radius: 16px; // More rounded for premium feel
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    .logo {
+        width: 100%;
+
+        img {
+            display: block;
+            margin: auto;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+
+    }
+
+    :global {
+        .ant-input-prefix {
+            margin-inline-end: 12px !important;
+        }
+        .ant-input-suffix {
+            margin-inline-start: 12px !important;
+        }
+    }
+}

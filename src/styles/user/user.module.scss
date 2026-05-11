@@ -1,0 +1,65 @@
+@use "../color.scss" as *;
+@use "../general.scss" as *;
+
+.user {
+    &__search {
+        margin-bottom: to-rem(10px);
+    }
+
+    &__container {
+        display: flex !important;
+        flex-direction: column;
+        gap: to-rem(10px);
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: to-rem(10px);
+
+        &__item {
+            display: flex !important;
+            gap: to-rem(10px);
+            border: 1px solid $gray;
+            border-radius: to-rem(5px);
+            white-space: break-spaces;
+            padding: to-rem(10px);
+
+            &__username {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__first_name {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__last_name {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__is_active {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__is_superuser {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__last_access {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+
+            &__created_date {
+                font-size: to-rem(16px);
+                font-weight: 500;
+            }
+        }
+    }
+
+}

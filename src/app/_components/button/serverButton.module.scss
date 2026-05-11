@@ -1,0 +1,20 @@
+@use "../../../styles/color.scss" as *;
+
+.serverButton {
+
+    color: $text_color;
+    background-color: $primary;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    width: fit-content;
+
+
+    a {
+        text-decoration: none;
+        color: $text_color;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+}

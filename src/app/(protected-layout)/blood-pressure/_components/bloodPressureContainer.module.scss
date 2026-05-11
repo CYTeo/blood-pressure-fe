@@ -1,0 +1,95 @@
+@use "../../../../styles/color.scss" as *;
+
+.container {
+  padding-block: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skeletonNode {
+  width: 100% !important;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  :global(.ant-skeleton-node) {
+    width: 100% !important;
+
+  }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dateGroup {
+  margin-bottom: 24px;
+}
+
+.dateHeader {
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+
+.cardHeader {
+  background-color: rgba($secondary_1, 0.5) !important;
+}
+
+.cardItem:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.cardItem {
+  border-bottom: 1px solid $text_color !important;
+  padding-block: 0.3rem !important;
+}
+
+.card {
+  margin-bottom: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  :global(.ant-card-body) {
+    padding: 12px 16px;
+  }
+}
+
+.timeLabel {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-top: 2px;
+}
+
+.pagination {
+  margin-top: 2rem !important;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    bottom: calc(65px + 0.5rem); // 65px is MobileBottomBar height
+    margin-top: 1rem !important;
+    padding: 8px;
+    
+    :global(.ant-pagination-item), 
+    :global(.ant-pagination-prev), 
+    :global(.ant-pagination-next) {
+      min-width: 28px;
+      height: 28px;
+      line-height: 26px;
+    }
+  }
+}

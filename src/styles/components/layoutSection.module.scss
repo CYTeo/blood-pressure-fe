@@ -1,0 +1,217 @@
+@use "../color.scss" as *;
+@use "../general.scss" as *;
+
+.layout__section {
+    min-height: 100vh !important;
+
+    &__header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: to-rem(64px);
+        display: flex;
+        align-items: center;
+        color: $white;
+        padding: to-rem(10px) !important;
+        background: $primary !important;
+        z-index: 999;
+
+        &__button {
+            margin-right: to-rem(8px);
+            font-size: to-rem(20px) !important;
+            width: to-rem(50px) !important;
+            height: to-rem(50px) !important;
+            color: $white !important;
+            background-color: $primary !important;
+        }
+
+        &__logo {
+            width: 100%;
+            max-width: to-rem(150px);
+            height: auto;
+            max-height: to-rem(40px);
+            padding-right: to-rem(20px);
+            vertical-align: middle;
+        }
+
+        &__right__container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 to-rem(10px);
+            margin-left: auto;
+
+            &__icon {
+                font-size: to-rem(20px) !important;
+                color: $white !important;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__layout {
+        margin-top: to-rem(64px) !important;
+    }
+
+    &__sider {
+        position: fixed !important;
+        height: calc(100vh - 64px) !important;
+        overflow-y: auto;
+        z-index: 3;
+
+        &__system__logo__container {
+            display: flex;
+            background: $secondary_1 !important;
+            justify-content: center !important;
+            padding: to-rem(10px);
+            width: 100%;
+            position: absolute !important;
+            z-index: 9999 !important;
+            bottom: 0 !important;
+        }
+
+        &__menu {
+            height: 100%;
+            border-right: 0 !important;
+            background: $secondary_1 !important;
+            padding: to-rem(5px) !important;
+            overflow-y: auto;
+
+            &.collapsed {
+                :global(.ant-menu-item) {
+                    padding: 0 to-rem(20px) !important;
+                }
+
+                :global(.ant-menu-submenu-title) {
+                    padding: 0 to-rem(20px) !important;
+                }
+            }
+
+            :global(.ant-menu-item) {
+                padding: 0 to-rem(10px) !important;
+
+                &:active {
+                    background-color: $secondary !important;
+                }
+            }
+
+            :global(.ant-menu-submenu) :global(.ant-menu-item) {
+                padding: 0 to-rem(20px) !important;
+            }
+
+            :global(.ant-menu-submenu-title) {
+                padding: 0 to-rem(10px) !important;
+            }
+
+            :global(.ant-menu-item-selected) {
+                background-color: $secondary !important;
+
+                :global(.ant-menu-item-icon) {
+                    font-size: 20px !important;
+                    color: $white !important;
+                }
+
+                :global(.ant-menu-title-content) {
+                    color: $white !important;
+                }
+            }
+
+            &__beta__tag {
+                align-self: center;
+                background-color: rgba($gray, 0.6);
+                color: $black;
+                line-height: to-rem(20px);
+                max-height: fit-content !important;
+                padding-inline: to-rem(8px);
+                border-radius: to-rem(4px);
+                font-size: to-rem(12px);
+                font-weight: 400 !important;
+            }
+        }
+    }
+
+    &__content {
+        padding: to-rem(15px) !important;
+        background: $white !important;
+        margin-left: to-rem(230px);
+
+        &.scrollbar {
+            height: calc(100vh - to-rem(64px));
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: $gray rgba($gray, 0.1);
+        }
+
+        @media (max-width: 430px) {
+            margin-left: to-rem(0px) !important;
+            padding: to-rem(10px) to-rem(8px) !important;
+        }
+
+        &.collapsed {
+            margin-left: to-rem(80px);
+        }
+
+        &__breadcrumb {
+            padding-inline: to-rem(6px);
+            margin-bottom: to-rem(10px);
+
+            &.hidden {
+                display: none;
+            }
+        }
+
+        &__heading {
+            font-size: to-rem(20px) !important;
+            margin: 0 0 to-rem(20px) to-rem(5px) !important;
+            font-weight: 500 !important;
+            color: $black !important;
+
+            &.hidden {
+                display: none;
+            }
+        }
+
+        &__container {
+            padding: to-rem(20px) to-rem(10px) !important;
+            border-radius: to-rem(10px);
+            background-color: $secondary_1 !important;
+
+            h2 {
+                margin-bottom: to-rem(10px);
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.custom__mask {
+    @media (max-width: 430px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        display: none;
+
+        &.visible {
+            display: block;
+        }
+    }
+}
+
+.logout__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    display: none;
+
+    &.visible {
+        display: block;
+    }
+}

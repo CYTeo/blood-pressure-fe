@@ -1,0 +1,12 @@
+@use "../../styles/color.scss" as *;
+
+.layout {
+    height: 100dvh;
+    overflow-y: auto;
+
+    .content {
+        margin-top: 60px;
+        padding: 1.1rem;
+        margin-bottom: 80px;
+    }
+}
