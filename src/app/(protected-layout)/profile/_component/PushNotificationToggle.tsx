@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Badge, Card,Flex, message, Switch, Typography } from "antd";
 
 import { subscribeWebPush } from "@/services/api/webpush";
+import { urlBase64ToUint8Array } from "@/utils/vapid";
 
 const { Text } = Typography;
 
@@ -44,7 +45,7 @@ const PushNotificationToggle = () => {
         // Subscribe
         const subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+          applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!),
         });
 
         await subscribeWebPush({ subscription });

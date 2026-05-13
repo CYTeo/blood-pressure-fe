@@ -1,4 +1,12 @@
 // public/sw.js
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(clients.claim());
+});
+
 self.addEventListener("push", function (event) {
   console.log("[Service Worker] Push Received.");
 
@@ -13,7 +21,7 @@ self.addEventListener("push", function (event) {
   console.log("[Service Worker] Push Data:", data);
 
   const options = {
-    body: data.message || "You have a new reminder!",
+    body: data.body || data.message || "You have a new reminder!",
     icon: "/logo/icon-192.webp",
     badge: "/logo/icon-192.webp",
     data: { url: data.url || "/" },

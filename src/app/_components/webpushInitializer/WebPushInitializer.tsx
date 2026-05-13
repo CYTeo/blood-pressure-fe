@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import { subscribeWebPush } from "@/services/api/webpush";
+import { urlBase64ToUint8Array } from "@/utils/vapid";
 
 const WebPushInitializer = () => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const WebPushInitializer = () => {
       if (!subscription && Notification.permission === 'granted') {
         const newSubscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+          applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!),
         });
 
         await subscribeWebPush({ subscription: newSubscription });
