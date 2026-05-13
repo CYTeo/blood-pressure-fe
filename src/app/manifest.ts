@@ -8,11 +8,11 @@ export default function manifest(): MetadataRoute.Manifest {
             "A professional Blood Pressure Tracker to record and analyze blood pressure.",
 
         // ✅ App identity & routing
-        id: "/blood-pressure",
-        start_url: "/blood-pressure",
-        scope: "/blood-pressure",
+        id: "/",
+        start_url: "/",
+        scope: "/",
 
-        display: "fullscreen",
+        display: "standalone",
         background_color: "#ffffff",
         theme_color: "#ffffff",
 
