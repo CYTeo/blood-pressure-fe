@@ -131,9 +131,11 @@ const CreateReminderForm = () => {
           <Input.TextArea placeholder="Any details or instructions..." rows={3} />
         </Form.Item>
 
-        <Form.Item name="isActive" valuePropName="checked">
+        <Form.Item>
           <Flex align="center" gap="small">
-            <Switch defaultChecked />
+            <Form.Item name="isActive" valuePropName="checked" noStyle>
+              <Switch />
+            </Form.Item>
             <Text>Enable Reminder</Text>
           </Flex>
         </Form.Item>
