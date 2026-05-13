@@ -21,12 +21,14 @@ self.addEventListener("push", function (event) {
   console.log("[Service Worker] Push Data:", data);
 
   const options = {
-    body: data.body || data.message || "You have a new reminder!",
+    body: data.body || data.message || "It's time to take your blood pressure reading!",
     icon: "/logo/icon-192.webp",
     badge: "/logo/icon-192.webp",
     data: { url: data.url || "/" },
     tag: "reminder-notification",
     renotify: true,
+    vibrate: [100, 50, 100],
+    requireInteraction: true,
   };
 
   event.waitUntil(
