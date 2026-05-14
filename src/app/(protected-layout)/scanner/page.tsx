@@ -4,6 +4,7 @@ import { Button, Flex, Result } from "antd";
 import Text from "antd/es/typography/Text";
 import { SmileOutlined } from "@ant-design/icons";
 import styles from "./scanner.module.scss";
+import { useRouter } from "next/navigation";
 
 // import React, { useEffect, useRef, useState } from "react";
 // import { useRouter } from "next/navigation";
@@ -271,6 +272,7 @@ import styles from "./scanner.module.scss";
 // export default ScannerPage;
 
 const ScannerPage = () => {
+  const router = useRouter();
   return (
     <Flex vertical align="center" justify="center">
       <Result
@@ -280,7 +282,14 @@ const ScannerPage = () => {
         }
         subTitle="Please check back later."
       />
-      <Button type="primary">Back to home</Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          router.push("/blood-pressure");
+        }}
+      >
+        Back to home
+      </Button>
     </Flex>
   );
 };

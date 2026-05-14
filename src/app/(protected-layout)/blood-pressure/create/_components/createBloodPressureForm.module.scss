@@ -9,11 +9,11 @@
 
 .header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .title {
-    margin-bottom: 8px !important;
+    margin-block: 8px !important;
     color: $primary !important;
 }
 
@@ -30,4 +30,52 @@
     height: 48px;
     border-radius: 8px;
     font-size: 16px;
+}
+
+.wheelerRow {
+    background: rgba($muted, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    justify-self: center;
+    margin-bottom: 0.5rem;
+}
+
+.wheelerTitle {
+    margin-block: 0 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 1rem!important;
+}
+
+.wheelerUnit {
+    margin-block: 0 !important;
+    color: $text_secondary !important;
+    font-size: 14px !important;
+    line-height: 1rem!important;
+
+}
+
+.wheelerFormItem {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.centeredLabels {
+    :global(.ant-form-item-label) {
+        text-align: center;
+        width: 100%;
+        padding-bottom: 8px;
+
+        label {
+            display: inline-flex;
+            justify-content: center;
+            width: 100%;
+            font-weight: 600;
+            color: $text_secondary;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+        }
+    }
 }

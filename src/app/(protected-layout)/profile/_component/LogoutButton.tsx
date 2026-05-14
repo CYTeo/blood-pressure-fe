@@ -9,7 +9,17 @@ import { LogoutOutlined } from "@ant-design/icons";
 
 import { logOut } from "@/services/api/auth";
 
-const LogoutButton = () => {
+interface LogoutButtonProps {
+  className?: string;
+  type?: "primary" | "default" | "dashed" | "link" | "text";
+  danger?: boolean;
+}
+
+const LogoutButton = ({
+  className,
+  type = "default",
+  danger,
+}: LogoutButtonProps) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -29,11 +39,12 @@ const LogoutButton = () => {
 
   return (
     <Button
-      danger
+      type={type}
+      danger={danger}
       size="large"
       onClick={handleLogout}
       loading={loading}
-      className={styles.logoutButton}
+      className={className || styles.logoutButton}
       icon={<LogoutOutlined />}
     >
       Logout

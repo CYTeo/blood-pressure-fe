@@ -6,22 +6,31 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   Button,
+  Col,
   Flex,
   Form,
   Input,
   message,
   Popconfirm,
-  Select,
+  Row,
   Spin,
   Switch,
   Typography,
 } from "antd";
 
-import { deleteReminder, getReminder, updateReminder } from "@/services/api/reminder";
+import {
+  WheelerOption,
+  WheelerPicker,
+} from "@/app/_components/wheeler/WheelerPicker";
+import {
+  deleteReminder,
+  getReminder,
+  updateReminder,
+} from "@/services/api/reminder";
 
 const { Title, Text } = Typography;
 
-const hourOptions = Array.from({ length: 24 }, (_, i) => ({
+const hourOptions: WheelerOption[] = Array.from({ length: 24 }, (_, i) => ({
   value: i.toString().padStart(2, "0"),
   label: i.toString().padStart(2, "0"),
 }));
@@ -69,10 +78,14 @@ const ReminderDetailPage = () => {
     setSubmitting(true);
     try {
       const { hour, minute, ...rest } = values;
+      const formattedHour = String(hour).padStart(2, "0");
+      const formattedMinute = String(minute).padStart(2, "0");
+
       const payload = {
         ...rest,
-        remindAt: `${hour}:${minute}`,
+        remindAt: `${formattedHour}:${formattedMinute}`,
       };
+
       await updateReminder(Number(id), payload);
       messageApi.success("Reminder updated successfully");
       setTimeout(() => {
@@ -103,109 +116,98 @@ const ReminderDetailPage = () => {
   return (
     <div style={{ paddingBottom: "2rem" }}>
       {contextHolder}
-      {/* <Card className={styles.formCard}> */}
-        <div className={styles.header}>
-          <Title level={3} className={styles.title}>
-            Edit Reminder
-          </Title>
-          <Text type="secondary">
-            Modify the details or timing of your reminder.
-          </Text>
-        </div>
+      <div className={styles.header}>
+        <Title level={3} className={styles.title}>
+          Edit Reminder
+        </Title>
+      </div>
 
-        <Spin spinning={loading}>
-          <Form
-            form={form}
-            layout="vertical"
-            onFinish={onFinish}
-            size="large"
+      <Spin spinning={loading}>
+        <Form form={form} layout="vertical" onFinish={onFinish} size="large">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[{ required: true, message: "Please input a title!" }]}
           >
-            <Form.Item
-              label="Title"
-              name="title"
-              rules={[{ required: true, message: "Please input a title!" }]}
+            <Input placeholder="e.g., Evening BP Check" />
+          </Form.Item>
+          <Form.Item
+            label="Remind At"
+            required
+            help="Select hour and minute (24-hour format)"
+          >
+            {/* <Flex gap="small" align="center"> */}
+            <Row
+              gutter={16}
+              align="bottom"
+              justify={"center"}
+              className={styles.wheelerRow}
             >
-              <Input placeholder="e.g., Evening BP Check" />
-            </Form.Item>
-
-            <Form.Item
-              label="Remind At"
-              required
-              help="Select hour and minute (24-hour format)"
-            >
-              <Flex gap="small" align="center">
+              <Col span={8}>
                 <Form.Item
                   name="hour"
                   noStyle
                   rules={[{ required: true, message: "Hour is required" }]}
                 >
-                  <Select
-                    options={hourOptions}
-                    placeholder="HH"
-                    className={styles.timeSelect}
-                    suffixIcon={null}
-                    virtual
-                  />
+                  <WheelerPicker options={hourOptions} />
                 </Form.Item>
-                <Text strong className={styles.timeSeparator}>:</Text>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   name="minute"
                   noStyle
                   rules={[{ required: true, message: "Minute is required" }]}
                 >
-                  <Select
-                    options={minuteOptions}
-                    placeholder="mm"
-                    className={styles.timeSelect}
-                    suffixIcon={null}
-                    virtual
-                  />
+                  <WheelerPicker options={minuteOptions} />
                 </Form.Item>
-              </Flex>
-            </Form.Item>
+              </Col>
+            </Row>
+          </Form.Item>
 
-            <Form.Item label="Message (Optional)" name="message">
-              <Input.TextArea placeholder="Any details or instructions..." rows={3} />
-            </Form.Item>
+          <Form.Item label="Message (Optional)" name="message">
+            <Input.TextArea
+              placeholder="Any details or instructions..."
+              rows={3}
+            />
+          </Form.Item>
 
-            <Form.Item>
-              <Flex align="center" gap="small">
-                <Form.Item name="isActive" valuePropName="checked" noStyle>
-                  <Switch />
-                </Form.Item>
-                <Text>Enable Reminder</Text>
-              </Flex>
-            </Form.Item>
+          <Form.Item>
+            <Flex align="center" gap="small">
+              <Form.Item name="isActive" valuePropName="checked" noStyle>
+                <Switch />
+              </Form.Item>
+              <Text>Enable Reminder</Text>
+            </Flex>
+          </Form.Item>
 
-            <Form.Item className={styles.submitButtonItem}>
-              <Flex vertical gap="small">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={submitting}
-                  block
-                  className={styles.submitButton}
-                >
-                  Update Reminder
+          <Form.Item className={styles.submitButtonItem}>
+            <Flex vertical gap="small">
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={submitting}
+                block
+                className={styles.submitButton}
+              >
+                Update
+              </Button>
+
+              <Popconfirm
+                title="Delete Reminder"
+                description="Are you sure you want to delete this reminder?"
+                onConfirm={handleDelete}
+                okText="Yes"
+                cancelText="No"
+                okButtonProps={{ danger: true, loading: deleting }}
+              >
+                <Button block danger type="text">
+                  Delete
                 </Button>
-                
-                <Popconfirm
-                  title="Delete Reminder"
-                  description="Are you sure you want to delete this reminder?"
-                  onConfirm={handleDelete}
-                  okText="Yes"
-                  cancelText="No"
-                  okButtonProps={{ danger: true, loading: deleting }}
-                >
-                  <Button block danger type="text">
-                    Delete Reminder
-                  </Button>
-                </Popconfirm>
-              </Flex>
-            </Form.Item>
-          </Form>
-        </Spin>
-      {/* </Card> */}
+              </Popconfirm>
+            </Flex>
+          </Form.Item>
+        </Form>
+      </Spin>
     </div>
   );
 };

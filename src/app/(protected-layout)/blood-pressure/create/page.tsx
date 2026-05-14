@@ -4,7 +4,7 @@ import CreateBloodPressureForm from "./_components/CreateBloodPressureForm";
 
 const CreateBloodPressurePage = () => {
   return (
-    <div style={{ padding: "20px 0" }}>
+    <div>
       <CreateBloodPressureForm />
     </div>
   );
