@@ -2,6 +2,7 @@ import styles from "./layout.module.scss";
 
 import { headers } from "next/headers";
 
+import { PWAProvider } from "@/contexts/PWAContext";
 import { isHandheld } from "@/utils/userAgent";
 
 import DesktopLayout from "../_components/layout/DesktopLayout";
@@ -21,8 +22,8 @@ const AppLayout = async (props: LayoutPropsType) => {
   const isMobileOrTablet = isHandheld(userAgent);
 
   return (
-    <>
-      <WebPushInitializer  />
+    <PWAProvider>
+      <WebPushInitializer />
       {isMobileOrTablet ? (
         <div className={styles.layout}>
           <MobileTopBar />
@@ -32,7 +33,7 @@ const AppLayout = async (props: LayoutPropsType) => {
       ) : (
         <DesktopLayout>{children}</DesktopLayout>
       )}
-    </>
+    </PWAProvider>
   );
 };
 

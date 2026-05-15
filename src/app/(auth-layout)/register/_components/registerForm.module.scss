@@ -25,12 +25,10 @@
 
     }
 
-    :global {
-        .ant-input-prefix {
-            margin-inline-end: 12px !important;
-        }
-        .ant-input-suffix {
-            margin-inline-start: 12px !important;
-        }
+    :global(.ant-input-prefix) {
+        margin-inline-end: 12px !important;
+    }
+    :global(.ant-input-suffix) {
+        margin-inline-start: 12px !important;
     }
 }

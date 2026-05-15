@@ -3,6 +3,7 @@
 import styles from "./desktopLayout.module.scss";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaRegUser } from "react-icons/fa";
@@ -35,7 +36,14 @@ const DesktopLayout = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.desktopLayout}>
       <div className={styles.sideBar}>
         <div className={styles.logo}>
-          <h2>Tracker</h2>
+          <Image
+            src={"/logo/favicon.ico"}
+            width={30}
+            height={30}
+            alt="Logo"
+            className={styles.logoImg}
+          />
+          <h2>BP Tracker</h2>
         </div>
         <nav className={styles.nav}>
           {menuItems.map((item) => (

@@ -24,7 +24,7 @@ const ProfilePage = async () => {
       </Title>
       <ProfileForm profile={profile} />
       <PushNotificationToggle />
-      {isMobileOrTablet && <LogoutButton danger />}
+      {isMobileOrTablet && <LogoutButton />}
     </div>
   );
 };

@@ -41,6 +41,7 @@ const LogoutButton = ({
     <Button
       type={type}
       danger={danger}
+      variant="filled"
       size="large"
       onClick={handleLogout}
       loading={loading}
