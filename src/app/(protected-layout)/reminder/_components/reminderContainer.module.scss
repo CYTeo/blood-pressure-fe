@@ -38,6 +38,13 @@
   }
 }
 
+.reminderList {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .timeLabel {
   font-size: 14px;
   color: $primary;

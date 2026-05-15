@@ -113,7 +113,7 @@ export const ReminderContainer = () => {
     }
 
     return (
-      <div style={{ marginTop: "1rem" }}>
+      <div className={styles.reminderList}>
         {reminders.data.map((item: any) => (
           <Card key={item.id} size="small" className={styles.reminderCard}>
             <Flex justify="space-between" align="center">
