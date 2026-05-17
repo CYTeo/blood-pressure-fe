@@ -72,7 +72,7 @@ export default async function middleware(req: NextRequest) {
     return redirectResponse;
   }
 
-  if (isPublicRoute && accessToken && !isTokenExpired(accessToken)) {
+  if (isPublicRoute && accessToken && !(await isTokenExpired(accessToken))) {
     return NextResponse.redirect(new URL("/blood-pressure", req.url));
   }
 
