@@ -22,7 +22,7 @@ const LoginForm = () => {
     try {
       await logIn(values);
 
-      router.push("/blood-pressure");
+      router.replace("/blood-pressure");
     } catch (error: any) {
       message.error(error?.response?.data?.message || "Login failed");
     } finally {
